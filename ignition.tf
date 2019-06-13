@@ -31,10 +31,7 @@ BOOTPROTO=none
 NAME=ens192
 DEVICE=ens192
 ONBOOT=yes
-IPADDR=${local.ip_addresses[count.index]}
-PREFIX=${local.mask}
-GATEWAY=${local.gw}
-DOMAIN=${var.cluster_domain}
+DOMAIN=${var.domain}
 DNS1=8.8.8.8
 EOF
   }
@@ -59,9 +56,9 @@ EOF
 data "ignition_config" "ign" {
   count = "${var.instance_count}"
 
-  append {
-    source = "${var.ignition_url != "" ? var.ignition_url : local.ignition_encoded}"
-  }
+  // append {
+  //   source = "${var.ignition_url != "" ? var.ignition_url : local.ignition_encoded}"
+  // }
 
   systemd = [
     "${data.ignition_systemd_unit.restart.*.id[count.index]}",

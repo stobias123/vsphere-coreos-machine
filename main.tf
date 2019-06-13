@@ -1,39 +1,19 @@
-data "vsphere_datacenter" "dc" {
-  name = "${var.vsphere_datacenter}"
-}
-
-data "vsphere_datastore" "datastore" {
-  name          = "${var.datastore}"
-  datacenter_id = "${var.datacenter_id}"
-}
-
-data "vsphere_network" "network" {
-  name          = "${var.network}"
-  datacenter_id = "${var.datacenter_id}"
-}
-
-data "vsphere_virtual_machine" "template" {
-  name          = "${var.template}"
-  datacenter_id = "${var.datacenter_id}"
-}
-
 resource "vsphere_virtual_machine" "vm" {
   count = "${var.instance_count}"
 
   name             = "${var.name}-${count.index}"
-  resource_pool_id = "${var.resource_pool_id}"
-  datastore_id     = "${data.vsphere_datastore.datastore.id}"
+  resource_pool_id     = "${data.vsphere_compute_cluster.this.resource_pool_id}"
+  datastore_id     = "${data.vsphere_datastore.this.id}"
   num_cpus         = "4"
   memory           = "16384"
   guest_id         = "other26xLinux64Guest"
-  folder           = "${var.folder}"
   enable_disk_uuid = "true"
 
   wait_for_guest_net_timeout  = "0"
   wait_for_guest_net_routable = "false"
 
   network_interface {
-    network_id = "${data.vsphere_network.network.id}"
+    network_id = "${data.vsphere_network.this.id}"
   }
 
   disk {

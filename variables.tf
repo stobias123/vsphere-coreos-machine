@@ -16,27 +16,18 @@ variable "ignition_url" {
   default = ""
 }
 
-variable "resource_pool_id" {
-  type = "string"
+variable "domain" {
+  type    = "string"
 }
-
-#variable "folder" {
-#  type = "string"
-#}
+variable "cluster" {
+  type    = "string"
+}
 
 variable "datastore" {
   type = "string"
 }
 
 variable "network" {
-  type = "string"
-}
-
-variable "cluster_domain" {
-  type = "string"
-}
-
-variable "datacenter_id" {
   type = "string"
 }
 
@@ -48,14 +39,8 @@ variable "machine_cidr" {
   type = "string"
 }
 
-variable "ipam" {
-  type = "string"
-}
 
-variable "ipam_token" {
+### Vsphere Config
+variable "datacenter" {
   type = "string"
-}
-
-variable "ip_addresses" {
-  type = "list"
 }
