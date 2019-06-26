@@ -11,11 +11,6 @@ variable "ignition" {
   default = ""
 }
 
-variable "ignition_url" {
-  type    = "string"
-  default = ""
-}
-
 variable "domain" {
   type    = "string"
 }
@@ -34,11 +29,6 @@ variable "network" {
 variable "template" {
   type = "string"
 }
-
-variable "machine_cidr" {
-  type = "string"
-}
-
 
 ### Vsphere Config
 variable "datacenter" {
