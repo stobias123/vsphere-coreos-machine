@@ -46,3 +46,7 @@ variable "vsphere_password" {
 variable "vsphere_server" {
   type = "string"
 }
+
+variable "ssh_keys" {
+  type = "list"
+}

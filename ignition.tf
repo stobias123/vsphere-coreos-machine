@@ -50,6 +50,13 @@ WantedBy=multi-user.target
 EOF
 }
 
+data "ignition_user" "foo" {
+    name = "core"
+    home_dir = "/home/core/"
+    shell = "/bin/bash"
+    ssh_authorized_keys = ["${var.ssh_keys}"]
+}
+
 data "ignition_config" "ign" {
   count = "${var.instance_count}"
 
