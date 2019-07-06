@@ -30,6 +30,10 @@ variable "template" {
   type = "string"
 }
 
+variable "systemd_units" {
+  type = "list"
+}
+
 ### Vsphere Config
 variable "datacenter" {
   type = "string"

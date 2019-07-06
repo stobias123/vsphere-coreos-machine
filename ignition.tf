@@ -64,9 +64,7 @@ data "ignition_config" "ign" {
   //   source = "${var.ignition_url != "" ? var.ignition_url : local.ignition_encoded}"
   // }
 
-  systemd = [
-    "${data.ignition_systemd_unit.restart.*.id[count.index]}",
-  ]
+  systemd = concat("${data.ignition_systemd_unit.restart.*.id[count.index]}","${var.systemd_units}")
 
   files = [
     "${data.ignition_file.hostname.*.id[count.index]}",
