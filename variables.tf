@@ -6,9 +6,9 @@ variable "instance_count" {
   type = "string"
 }
 
-variable "ignition" {
+variable "append_ignition" {
   type    = "string"
-  default = ""
+  description = "The default module will boot coreos. Add your systemd files here with `ignition_config.rendered`"
 }
 
 variable "domain" {

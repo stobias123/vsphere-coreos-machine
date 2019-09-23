@@ -1,3 +1,6 @@
+terraform {
+  required_ersion = "~> 0.11.0"
+}
 resource "vsphere_virtual_machine" "vm" {
   count = "${var.instance_count}"
 

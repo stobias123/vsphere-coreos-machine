@@ -1,5 +1,5 @@
 locals {
-  ignition_encoded = "data:text/plain;charset=utf-8;base64,${base64encode(var.ignition)}"
+  ignition_encoded = "data:text/plain;charset=utf-8;base64,${base64encode(var.append_ignition)}"
 }
 
 data "ignition_file" "hostname" {
@@ -60,9 +60,9 @@ data "ignition_user" "foo" {
 data "ignition_config" "ign" {
   count = "${var.instance_count}"
 
-  // append {
-  //   source = "${var.ignition_url != "" ? var.ignition_url : local.ignition_encoded}"
-  // }
+  append {
+    source = "${local.ignition_encoded}"
+  }
 
   systemd = [
     "${data.ignition_systemd_unit.restart.*.id[count.index]}",
